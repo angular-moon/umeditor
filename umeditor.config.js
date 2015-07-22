@@ -19,6 +19,8 @@
      * 因此，UEditor提供了针对不同页面的编辑器可单独配置的根路径，具体来说，在需要实例化编辑器的页面最顶部写上如下代码即可。当然，需要令此处的URL等于对应的配置。
      * window.UMEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
+    var __MOUDULE =  __uri("umeditor");
+    window.UMEDITOR_HOME_URL = __MOUDULE.slice(0,__MOUDULE.lastIndexOf("/")+1);
     var URL = window.UMEDITOR_HOME_URL || (function(){
 
         function PathStack() {
@@ -152,7 +154,7 @@
 
         //语言配置项,默认是zh-cn。有需要的话也可以使用如下这样的方式来自动多语言切换，当然，前提条件是lang文件夹下存在对应的语言文件：
         //lang值也可以通过自动获取 (navigator.language||navigator.browserLanguage ||navigator.userLanguage).toLowerCase()
-        //,lang:"zh-cn"
+        ,lang:"zh-cn"
         //,langPath:URL +"lang/"
 
         //ie下的链接自动监测
