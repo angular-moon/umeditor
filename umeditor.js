@@ -4,8 +4,7 @@
  * build: Wed Mar 19 2014 17:14:25 GMT+0800 (中国标准时间)
  */
 
-//@require themes/default/css/umeditor.css
-define(["jquery", "umeditor.config.js"], function() {
+define(["jquery", "umeditor.config.js", "css!themes/default/css/umeditor.css"], function() {
 
 (function($){
 
