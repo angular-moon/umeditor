@@ -3,9 +3,6 @@
  * version: 1.2.2
  * build: Wed Mar 19 2014 17:14:25 GMT+0800 (中国标准时间)
  */
-
-define(["jquery", "umeditor.config.js", "css!themes/default/css/umeditor.css"], function() {
-
 (function($){
 
 UMEDITOR_CONFIG = window.UMEDITOR_CONFIG || {};
@@ -2733,7 +2730,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
             }
             return this;
         },
-      
+
 
         createAddress : function(ignoreEnd,ignoreTxt){
             var addr = {},me = this;
@@ -3319,7 +3316,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
             loadPlugins(me)
         }else{
             utils.loadFile(document, {
-                src: me.options.langPath + me.options.lang + "/" + me.options.lang + ".js",
+                src: me.options.langPath + me.options.lang + "/" + me.options.lang + ".js?v=" + me.options.v,
                 tag: "script",
                 type: "text/javascript",
                 defer: "defer"
@@ -8814,6 +8811,8 @@ UM.ui.define('scale', {
             $root = me.root(),
             $target = me.data('$scaleTarget');
         $target.css({width: $root.width(), height: $root.height()});
+        $target.attr('width', $root.width());
+        $target.attr('height', $root.height());
         me.attachTo($target);
     },
     updateContainerStyle: function (dir, offset) {
@@ -10280,7 +10279,7 @@ UM.registerUI('link image video map formula',function(name){
     var me = this, currentRange, $dialog,
         opt = {
             title: (me.options.labelMap && me.options.labelMap[name]) || me.getLang("labelMap." + name),
-            url: me.options.UMEDITOR_HOME_URL + 'dialogs/' + name + '/' + name + '.js'
+            url: me.options.UMEDITOR_HOME_URL + 'dialogs/' + name + '/' + name + '.js?v=' + me.options.v
         };
 
     var $btn = $.eduibutton({
@@ -10378,7 +10377,7 @@ UM.registerUI('link image video map formula',function(name){
 });
 UM.registerUI( 'emotion formula', function( name ){
     var me = this,
-        url  = me.options.UMEDITOR_HOME_URL + 'dialogs/' +name+ '/'+name+'.js';
+        url  = me.options.UMEDITOR_HOME_URL + 'dialogs/' +name+ '/'+name+'.js?v=' + me.options.v;
 
     var $btn = $.eduibutton({
         icon: name,
@@ -10923,7 +10922,3 @@ UM.registerUI('forecolor backcolor', function( name ) {
 });
 
 })(jQuery)
-
-return window.UM;
-
-});

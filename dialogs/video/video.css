@@ -57,3 +57,15 @@
 .edui-dialog-video #eduiVideoFloat div{cursor:pointer;opacity: 0.5;filter: alpha(opacity = 50);margin:9px;_margin:5px;width:38px;height:36px;float:left;}
 .edui-dialog-video #eduiVideoFloat .edui-video-focus{opacity: 1;filter: alpha(opacity = 100)}
 .edui-dialog-video .edui-video-wrapper span.edui-video-view{display: inline-block;width: 30px;float: right;cursor: pointer;color: blue}
+.edui-dialog-video .center-focus{
+    background: url(images/center_focus.jpg);
+}
+.edui-dialog-video .left-focus{
+    background: url(images/left_focus.jpg);
+}
+.edui-dialog-video .right-focus{
+    background: url(images/right_focus.jpg);
+}
+.edui-dialog-video .none-focus{
+    background: url(images/none_focus.jpg);
+}

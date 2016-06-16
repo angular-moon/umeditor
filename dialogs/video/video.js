@@ -5,7 +5,7 @@
 
     UM.registerWidget( widgetName,{
 
-        tpl: "<link rel=\"stylesheet\" type=\"text/css\" href=\"<%=video_url%>video.css\" />" +
+        tpl: "<link rel=\"stylesheet\" type=\"text/css\" href=\"<%=video_url%>video.css?v=" + UMEDITOR_CONFIG.v+ "\">" +
             "<div class=\"edui-video-wrapper\">" +
             "<div id=\"eduiVideoTab\">" +
             "<div id=\"eduiVideoTabHeads\" class=\"edui-video-tabhead\">" +
@@ -209,7 +209,8 @@
                     var div = document.createElement( "div" );
                     div.setAttribute( "name", j );
                     if ( j == "none" ) div.className="edui-video-focus";
-                    div.style.cssText = "background:url("+ vidoe_home +"images/" + j + "_focus.jpg);";
+                    //div.style.cssText = "background:url("+ vidoe_home +"images/" + j + "_focus.jpg?v=" + UMEDITOR_CONFIG.v+ ");";
+                    $(div).addClass(j+'-focus');
                     div.setAttribute( "title", nameMaps[j] );
                     floatContainer.appendChild( div );
                 }
@@ -224,11 +225,13 @@
             for ( var i = 0, ci; ci = selects[i++]; ) {
                $(ci).on("click", function () {
                     for ( var j = 0, cj; cj = selects[j++]; ) {
-                        cj.className = "";
-                        cj.removeAttribute && cj.removeAttribute( "class" );
+                        /*cj.className = "";
+                        cj.removeAttribute && cj.removeAttribute( "class" );*/
+                        $(cj).removeClass('edui-video-focus');
                     }
-                    this.className = "edui-video-focus";
-                } )
+                    //this.className = "edui-video-focus";
+                    $(this).addClass('edui-video-focus');
+               })
             }
         },
         /**

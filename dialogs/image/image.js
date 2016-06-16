@@ -367,7 +367,7 @@
         currentDialog = null;
 
     UM.registerWidget('image', {
-        tpl: "<link rel=\"stylesheet\" type=\"text/css\" href=\"<%=image_url%>image.css\">" +
+        tpl: "<link rel=\"stylesheet\" type=\"text/css\" href=\"<%=image_url%>image.css?v=" + UMEDITOR_CONFIG.v+ "\">" +
             "<div class=\"edui-image-wrapper\">" +
             "<ul class=\"edui-tab-nav\">" +
             "<li class=\"edui-tab-item edui-active\"><a data-context=\".edui-image-local\" class=\"edui-tab-text\"><%=lang_tab_local%></a></li>" +

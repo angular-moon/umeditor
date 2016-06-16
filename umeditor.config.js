@@ -136,6 +136,8 @@
 
         //为编辑器实例添加一个路径，这个不能被注释
         UMEDITOR_HOME_URL : URL
+        //增加版本号,用于刷新(语言和插件的)强缓存
+        ,v:1
 
         //图片上传配置区
         ,imageUrl:URL+"jsp/imageUp.jsp"             //图片上传提交地址

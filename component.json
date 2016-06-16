@@ -6,5 +6,11 @@
     "dependencies": [
         "jquery@1.8.3",
         "css"
-    ]
+    ],
+    "shim": {
+        "umeditor.js": {
+            "deps": ["umeditor.config.js", "css!themes/default/css/umeditor.css"],
+            "exports": "window.UM"
+        }
+    }
 }

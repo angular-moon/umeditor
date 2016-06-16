@@ -4,7 +4,7 @@
 
     UM.registerWidget('formula', {
 
-        tpl: "<link type=\"text/css\" rel=\"stylesheet\" href=\"<%=formula_url%>formula.css\">" +
+        tpl: "<link type=\"text/css\" rel=\"stylesheet\" href=\"<%=formula_url%>formula.css?v=" + UMEDITOR_CONFIG.v+ "\">" +
             "<div class=\"edui-formula-wrapper\">" +
             "<ul class=\"edui-tab-nav\"></ul>" +
             "<div class=\"edui-tab-content\"></div>" +
