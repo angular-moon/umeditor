@@ -1,3 +1,9 @@
+.edui-container, .edui-container *, .edui-container *:before, .edui-container *:after {
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+}
+
 .edui-container{
     position: relative;
     border: 1px solid #d4d4d4;
