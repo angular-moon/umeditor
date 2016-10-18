@@ -7935,6 +7935,10 @@ UM.plugins['autosave'] = function() {
     }
 
     me.addListener('ready', function(){
+
+        if(!me.getOpt('enableAutoSave'))
+            return;
+        
         var _suffix = "-drafts-data",
             key = null;
 
