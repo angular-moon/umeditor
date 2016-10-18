@@ -3468,9 +3468,12 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
                     options.initialFrameHeight = options.minFrameHeight = $(container).height() || UM.defaultHeight;
                 }
 
-                container.style.width = /%$/.test(options.initialFrameWidth) ?  '100%' : options.initialFrameWidth -
-                    getStyleValue("padding-left")-
-                    getStyleValue("padding-right")  +'px';
+                /*container.style.width = /%$/.test(options.initialFrameWidth) ?  '100%' : options.initialFrameWidth -
+                getStyleValue("padding-left")-
+                getStyleValue("padding-right")  +'px';*/
+
+                //由于修改了box-sizing, 不需要在减去边框. 2016-10-18 moon fix
+                container.style.width = /%$/.test(options.initialFrameWidth) ?  '100%' : options.initialFrameWidth+'px';
 
                 var height = /%$/.test(options.initialFrameHeight) ?  '100%' : (options.initialFrameHeight - getStyleValue("padding-top")- getStyleValue("padding-bottom") );
                 if(this.options.autoHeightEnabled){
@@ -7938,7 +7941,7 @@ UM.plugins['autosave'] = function() {
 
         if(!me.getOpt('enableAutoSave'))
             return;
-        
+
         var _suffix = "-drafts-data",
             key = null;
 

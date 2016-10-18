@@ -4,11 +4,18 @@
     box-sizing: content-box !important;
 }
 
+.edui-body-container{
+    box-sizing: border-box !important;
+}
+
 .edui-container{
     position: relative;
     border: 1px solid #d4d4d4;
     box-shadow: 2px 2px 5px #d3d6da;
     background-color: #fff;
+}
+.edui-container img{
+    max-width: 100%;
 }
 .edui-container .edui-toolbar{
     position: relative;
