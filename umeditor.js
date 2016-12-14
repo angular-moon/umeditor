@@ -5768,7 +5768,7 @@ UM.commands['insertimage'] = {
         var html = [], str = '', ci;
         ci = opt[0];
         if (opt.length == 1) {
-            str = '<img src="' + ci.src + '" ' + (ci._src ? ' _src="' + ci._src + '" ' : '') +
+            str = '<img src="' + ci.src + '" ' + /*(ci._src ? ' _src="' + ci._src + '" ' : '') +*/
                 (ci.width ? 'width="' + ci.width + '" ' : '') +
                 (ci.height ? ' height="' + ci.height + '" ' : '') +
                 (ci['floatStyle'] == 'left' || ci['floatStyle'] == 'right' ? ' style="float:' + ci['floatStyle'] + ';"' : '') +
@@ -5785,7 +5785,7 @@ UM.commands['insertimage'] = {
         } else {
             for (var i = 0; ci = opt[i++];) {
                 str = '<p ' + (ci['floatStyle'] == 'center' ? 'style="text-align: center" ' : '') + '><img src="' + ci.src + '" ' +
-                    (ci.width ? 'width="' + ci.width + '" ' : '') + (ci._src ? ' _src="' + ci._src + '" ' : '') +
+                    (ci.width ? 'width="' + ci.width + '" ' : '') + /*(ci._src ? ' _src="' + ci._src + '" ' : '') +*/
                     (ci.height ? ' height="' + ci.height + '" ' : '') +
                     ' style="' + (ci['floatStyle'] && ci['floatStyle'] != 'center' ? 'float:' + ci['floatStyle'] + ';' : '') +
                     (ci.border || '') + '" ' +
@@ -6606,7 +6606,40 @@ UM.plugins['paste'] = function () {
 
     var me = this;
 
+    me.setOpt({
+        retainOnlyLabelPasted : false
+    });
 
+    var htmlContent, address;
+
+    function getPureHtml(html){
+        return html.replace(/<(\/?)([\w\-]+)([^>]*)>/gi, function (a, b, tagName, attrs) {
+            tagName = tagName.toLowerCase();
+            if ({img: 1}[tagName]) {
+                return a;
+            }
+            attrs = attrs.replace(/([\w\-]*?)\s*=\s*(("([^"]*)")|('([^']*)')|([^\s>]+))/gi, function (str, atr, val) {
+                if ({
+                        'src': 1,
+                        'href': 1
+                        //,'name': 1
+                    }[atr.toLowerCase()]) {
+                    return atr + '=' + val + ' '
+                }
+                return ''
+            });
+            if ({
+                    'span': 1,
+                    'div': 1
+                }[tagName]) {
+                return ''
+            } else {
+
+                return '<' + b + tagName + ' ' + utils.trim(attrs) + '>'
+            }
+
+        });
+    }
     function filter(div) {
         var html;
         if (div.firstChild) {
@@ -6695,7 +6728,21 @@ UM.plugins['paste'] = function () {
                 return;
             }
 
-            me.execCommand('insertHtml', html.html, true);
+            //me.execCommand('insertHtml', html.html, true);
+            //////////////////////////////////////////////////////////////////////////////////////////
+            //增加 retainOnlyLabelPasted, pasteplain, filterTxtRules 支持 2016-12-14 moon
+            if(me.getOpt('pasteplain') === true){
+                root = UM.htmlparser(html.html, true);
+                //文本模式
+                UM.filterNode(root, me.options.filterTxtRules);
+                htmlContent = root.toHtml();
+            }else{
+                htmlContent = html.html;
+            }
+
+            address = me.selection.getRange().createAddress(true);
+            me.execCommand('insertHtml', me.getOpt('retainOnlyLabelPasted') === true ?  getPureHtml(htmlContent) : htmlContent, true);
+            //////////////////////////////////////////////////////////////////////////////////////////
             me.fireEvent("afterpaste", html);
         }
     }
