@@ -4,12 +4,11 @@
     "name": "umeditor",
     "main": "umeditor.js",
     "dependencies": [
-        "jquery@1.8.3",
-        "css"
+        "jquery@1.8.3"
     ],
     "shim": {
         "umeditor.js": {
-            "deps": ["umeditor.config.js", "css!themes/default/css/umeditor.css"],
+            "deps": ["umeditor.config.js", "themes/default/css/umeditor.css"],
             "exports": "window.UM"
         }
     }
