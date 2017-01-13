@@ -163,6 +163,7 @@
         //语言配置项,默认是zh-cn。有需要的话也可以使用如下这样的方式来自动多语言切换，当然，前提条件是lang文件夹下存在对应的语言文件：
         //lang值也可以通过自动获取 (navigator.language||navigator.browserLanguage ||navigator.userLanguage).toLowerCase()
         ,lang:"zh-cn"
+        ,insertImgProtocol: location.protocol //如果插入的图片服务器端返回的路径没有指定协议, 则使用该协议
         ,retainOnlyLabelPasted : true //粘贴只保留标签，去除标签所有属性
         ,pasteplain: true //是否默认为纯文本粘贴。false为不使用纯文本粘贴，true为使用纯文本粘贴
         //纯文本粘贴模式下的过滤规则

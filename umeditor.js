@@ -5767,6 +5767,9 @@ UM.commands['insertimage'] = {
         var me = this;
         var html = [], str = '', ci;
         ci = opt[0];
+        if (me.options.insertImgProtocol && /^\/\//.test(ci.src)) {
+            ci.src = ci.src.replace(/^\/\//, me.options.insertImgProtocol+'//')
+        }
         if (opt.length == 1) {
             str = '<img src="' + ci.src + '" ' + /*(ci._src ? ' _src="' + ci._src + '" ' : '') +*/
                 (ci.width ? 'width="' + ci.width + '" ' : '') +
