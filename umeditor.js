@@ -7680,10 +7680,18 @@ UM.plugins['keystrokes'] = function() {
                 if(domUtils.isBoundaryNode(tmpNode,'firstChild') ){
                     tmpNode = rng.endContainer;
                     if(rng.endOffset == (tmpNode.nodeType == 3 ? tmpNode.nodeValue.length : tmpNode.childNodes.length) && domUtils.isBoundaryNode(tmpNode,'lastChild')){
-                        me.fireEvent('saveScene');
-                        me.body.innerHTML = '<p>'+(browser.ie ? '' : '<br/>')+'</p>';
-                        rng.setStart(me.body.firstChild,0).setCursor(false,true);
-                        me._selectionChange();
+                        //try fix firefox select all + del, content insert out container bug
+						function windUp() {
+							me.fireEvent('saveScene');
+							me.body.innerHTML = '<p>' + (browser.ie ? '' : '<br/>') + '</p>';
+							rng.setStart(me.body.firstChild, 0).setCursor(false, true);
+							me._selectionChange();
+					  	}
+					  	if (browser.gecko) {
+							setTimeout(windUp, 100);
+					  	} else {
+							windUp();
+					  	}
                         return;
                     }
                 }
